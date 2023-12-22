@@ -1,0 +1,164 @@
+<tarea id = "TCCB" nombre ="Tarea de carga de catálogos base" autor="Fabricio Alejandro Sánchez García">
+    <pagina nombre="Página de carga de catálogos base" id="1">
+        <nivel nombre="Nivel seleccione catálogo" id="NISC" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="formulario" nombre="Seleccione catálogo" id="SECA" accionDefault="seleccionar">
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" text="ID dummy" autogenerado="true" generacion="@prox()+1" visible="false"/>
+                    <campo name="seleccione_catalogo" text="*Seleccione catálogo" local="true" type="string" columnas="4" margen-izquierdo="3" margen-derecho="3" validacion="%seleccione_catalogo%==null" validacionMensaje="Seleccione una opción del catálogo">
+                        <opciones>
+                            <opcion texto="Estados" valor="estados"/>
+                            <opcion texto="Municipios" valor="municipios"/>
+                            <opcion texto="Sexo" valor="sexo"/>
+                            <opcion texto="Tipo de solicitud ciudadana" valor="tipo_solicitud_ciudadana"/>
+                            <opcion texto="Categoría de solicitud ciudadana" valor="categoria_solicitud_ciudadana"/>
+                            <opcion texto="Tipo de servicio" valor="tipo_servicio"/>
+                            <opcion texto="Tipo de respuesta" valor="tipo_respuesta"/>
+                            <opcion texto="Estatus solución" valor="estatus_solucion"/>
+                            <opcion texto="Estatus solicitud" valor="estatus_solicitud"/>
+                        </opciones>
+                    </campo>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Estados" id="NEST" mostrarNivelAnterior="false" mostrarProximoNivel="false" ejecutar="%NISC.SECA.seleccione_catalogo%=='estados'">
+            <componente tipo="tabla" nombre="Estados" id="CEST" filtro="true">
+                <tabla schema="catalog" nombre="estados">
+                   <campo name="id_estado" text="ID Estado" autogenerado="true" generacion="@prox()+1" columnas="4" margen-izquierdo="3" margen-derecho="3" width="400"/>
+                   <campo name="estado" text="*Estado" columnas="4" margen-izquierdo="3" margen-derecho="3" validacion="%estado%==null" validacionMensaje="Registre estado" width="700"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Municipio" id="NMUN" mostrarNivelAnterior="false" mostrarProximoNivel="false" ejecutar="%NISC.SECA.seleccione_catalogo%=='municipios'">
+            <componente tipo="tabla" nombre="Municipios" id="CMUN" filtro="true">
+                <tabla schema="catalog" nombre="municipios">
+                    <campo name="id_municipio" text="ID Municipio" autogenerado="true" generacion="@prox()+1" width="300" columnas="4" margen-izquierdo="3" margen-derecho="3"/>
+                    <campo name="id_estado" text="*Estado" width="500" validacion="%id_estado%==null" validacionMensaje="Seleccione un estado" columnas="4" margen-izquierdo="3" margen-derecho="3"/>
+                    <campo name="municipio" text="*Municipio" width="500" validacion="%municipio%==null" validacionMensaje="Registre municipio" columnas="4" margen-izquierdo="3" margen-derecho="3"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Sexo" id="NSEX" mostrarNivelAnterior="false" mostrarProximoNivel="false" ejecutar="%NISC.SECA.seleccione_catalogo%=='sexo'">
+            <componente tipo="tabla" nombre="Sexo" id="CSEX" filtro="true">
+                <tabla schema="catalog" nombre="sexo">
+                    <campo name="id_sexo" text="ID Sexo" autogenerado="true" generacion="@prox()+1" width="400" columnas="4" margen-izquierdo="3" margen-derecho="3" />
+                    <campo name="nombre" text="*Sexo" width="700" columnas="2" margen-izquierdo ="4" margen-derecho="4" validacion="%nombre%==null" validacionMensaje="Registre sexo" />
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Tipo de solicitud ciudadana" id="NTSC" mostrarNivelAnterior="false" mostrarProximoNivel="false" ejecutar="%NISC.SECA.seleccione_catalogo%=='tipo_solicitud_ciudadana'">
+            <componente tipo="tabla" nombre="Tipo de solicitud ciudadana" id="CTSC" filtro="true">
+                <tabla schema="catalog" nombre="tipo_solicitud_ciudadana">
+                    <campo name="id_tipo_solicitud" text="ID tipo solicitud" autogenerado="true" generacion="@prox()+1" width="400" columnas="4" margen-izquierdo="3" margen-derecho="3"/>
+                    <campo name="tipo_solicitud" text="*Tipo solicitud" width="700" columnas="4" margen-derecho="3" margen-izquierdo="3"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Categoría de la solicitud ciudadana" id="NCSC" mostrarNivelAnterior="false" mostrarProximoNivel="false" ejecutar="%NISC.SECA.seleccione_catalogo%=='categoria_solicitud_ciudadana'">
+            <componente tipo="tabla" nombre="Categoría de la solicitud ciudadana" id="CCSC" filtro="true">
+                <tabla schema="catalog" nombre="categoria_solicitud_ciudadana">
+                    <campo name="id_categoria_solicitud" text="ID Categoría solicitud" autogenerado="true" generacion="@prox()+1" width="400" columnas="4" margen-derecho="3" margen-izquierdo="3"/>
+                    <campo name="categoria_solicitud" text="*Categoría solicitud" width="700" columnas="4" margen-derecho="3" margen-izquierdo="3"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Tipo de servicio" id="NTS" mostrarNivelAnterior="false" mostrarProximoNivel="false" ejecutar="%NISC.SECA.seleccione_catalogo%=='tipo_servicio'">
+            <componente tipo="tabla" nombre="Tipo de servicio" id="CTS" filtro="true">
+                <tabla schema="catalog" nombre="tipo_servicio">
+                    <campo name="id_tipo_servicio" text="ID tipo servicio" autogenerado="true" generacion="@prox()+1" width="400" columnas="4" margen-derecho="3" margen-izquierdo="3"/>
+                    <campo name="tipo_servicio" text="*Tipo de servicio" validacion="%tipo_servicio%==null" validacionMensaje="Registre tipo de servicio" width="700" columnas="4" margen-derecho="3" margen-izquierdo="3"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Tipo de respuesta" id="NTR" mostrarNivelAnterior="false" mostrarProximoNivel="false" ejecutar="%NISC.SECA.seleccione_catalogo%=='tipo_respuesta'">
+            <componente tipo="tabla" nombre="Tipo de respuesta" id="CTR" filtro="true" >
+                <tabla schema="catalog" nombre="tipo_respuesta">
+                    <campo name="id_tipo_respuesta" text="ID Tipo de respuesta" autogenerado="true" generacion="@prox()+1" width="400" columnas="4" margen-derecho="3" margen-izquierdo="3"/>
+                    <campo name="tipo_respuesta" text="*Tipo de respuesta" validacion="%tipo_respuesta%==null" validacionMensaje="Registre tipo de respuesta" width="700" columnas="4" margen-derecho="3" margen-izquierdo="3"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Estatus solución" id="NES" mostrarNivelAnterior="false" mostrarProximoNivel="false" ejecutar="%NISC.SECA.seleccione_catalogo%=='estatus_solucion'">
+            <componente tipo="tabla" nombre="Estatus solución" id="CES" filtro="true">
+                <tabla schema="catalog" nombre="estatus_solucion">
+                    <campo name="id_estatus_solucion" text="ID estatus solucion" autogenerado="true" generacion="@prox()+1" width="400" columnas="4" margen-derecho="3" margen-izquierdo="3"/>
+                    <campo name="estatus_solucion" text="*Estatus solución" validacion="%estatus_solucion%==null" validacionMensaje="Seleccione estatus de solución" width="700" columnas="4" margen-derecho="3" margen-izquierdo="3"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Estatus solicitud" id="NESC" mostrarNivelAnterior="false" mostrarProximoNivel="false" ejecutar="%NISC.SECA.seleccione_catalogo%=='estatus_solicitud'">
+            <componente tipo="tabla" nombre="Estatus solución" id="CESC" filtro="true">
+                <tabla schema="catalog" nombre="estatus_solicitud">
+                    <campo name="id_estatus_solicitud" text="ID estatus solicitud" autogenerado="true" generacion="@prox()+1" width="300" columnas="4" margen-izquierdo="3" margen-derecho="3"/>
+                    <campo name="estatus_solicitud" text="*Estatus solicitud" validacion="%estatus_solicitud%==null" validacionMensaje="Seleccione estatus solicitud" width="700" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="cerrar tarea" id="cerrar_tarea" interactivo="false">
+            <componente tipo="cursor" nombre="cerrar tarea" id="cerrar_tarea">
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" filtroCampo="id_dummy" filtroOperador="=" filtroValor="1"/>
+                </tabla>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

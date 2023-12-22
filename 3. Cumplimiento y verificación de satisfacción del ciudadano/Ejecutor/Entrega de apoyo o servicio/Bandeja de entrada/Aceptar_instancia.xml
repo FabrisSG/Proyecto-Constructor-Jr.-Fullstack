@@ -1,0 +1,15 @@
+<tarea nombre="Aceptar instancia" autor="Fabricio Alejandro Sánchez García">
+    <pagina nombre="aceptarInstancia" id="1">
+        <nivel nombre="aceptarInstancia" id="NAI" interactivo="false">
+            <componente tipo="solicitud" nombre="aceptarInstancia" id="CAI">
+                <parametros url="$config.request$" metodo="POST" accion="aceptarInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="$protocolarios.process$"/>
+                    <parametro name="version" calc="$protocolarios.version$"/>
+                    <parametro name="instance" calc="$protocolarios.instance$"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                </parametros>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

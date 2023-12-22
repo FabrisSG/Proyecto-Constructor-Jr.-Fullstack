@@ -1,0 +1,152 @@
+<tarea nombre="Autorización de la solución" autor="Fabricio Alejandro Sánchez García">
+    <pagina nombre="Autorización de la solución" id="1">
+        <nivel nombre="Autorización de la solución" id="NAS" mostrarProximoNivel="false" >
+            <!--Formulario solicitudes ciudadanas-->
+            <componente tipo="formulario" nombre="Solicitudes ciudadanas" id="CSC" colapsado="si">
+                <tabla schema="operation" nombre="solicitudes_ciudadanas">
+                    <campo name="id_solicitud_ciudadana" text="Folio" calc="$inParam.id_solicitud_ciudadana$" columnas="1"/>
+                    <campo name="fecha_registro" text="Fecha y hora de registro" columnas="2" margen-derecho="7" habilitado="false"/>
+                    <campo name="etiqueta1" text="Datos del solicitante" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                    <campo name="nombre" text="Nombre(s)" columnas="4"/>
+                    <campo name="apellido_paterno" text="Apellido paterno" columnas="3"/>
+                    <campo name="apellido_materno" text="Apellido materno" columnas="3"/>
+                    <campo name="id_sexo" text="Género" columnas="2"/>
+                    <campo name="correo_electronico" text="Dirección de correo electrónico" columnas="3" habilitado="false"/>
+                    <campo name="l_confirme_correo" text="Confirme correo electrónico" local="true" type="string" columnas="3" margen-derecho="2" habilitado="false"/>
+                    <campo name="telefono_fijo" text="Teléfono fijo" columnas="2" habilitado="false"/>
+                    <campo name="telefono_movil" text="Teléfono móvil" columnas="2" margen-derecho="6" habilitado="false"/>
+                    <campo name="etiqueta2" text="Domicilio" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                    <campo name="id_estado" text="Estado" columnas="5" habilitado="false"/>
+                    <campo name="id_municipio" text="Municipio" columnas="5" habilitado="false"/>
+                    <campo name="codigo_postal" text="Código postal" columnas="1" habilitado="false"/>
+                    <campo name="colonia" text="Colonia" columnas="3" habilitado="false"/>
+                    <campo name="calle" text="Calle" columnas="4" habilitado="false"/>
+                    <campo name="no_ext" text="No.Ext." columnas="1" habilitado="false"/>
+                    <campo name="no_int" text="No.Int." columnas="1" habilitado="false"/>
+                    <campo name="etiqueta3" text="Solicitud ciudadana" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                    <campo name="id_tipo_solicitud" text="Tipo de solicitud" columnas="3" habilitado="false"/>
+                    <campo name="id_categoria_solicitud" text="Categoría de la solicitud" columnas="4" habilitado="false"/>
+                    <campo name="otro" text="Otro" columnas="3" habilitado="false"/>
+                    <campo name="detalle_problema" text="Detalle del problema" columnas="10" habilitado="false"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" visible="false" />
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+
+            <!--Tabla Información gráfica complementaria-->
+            <componente tipo="tabla" nombre="Información gráfica complementaria" id="CIGC" colapsado="si" mostrarAgregar="false" mostrarEditar="false" mostrarEliminar="false">
+                <tabla schema="operation" nombre="informacion_grafica_complementaria">
+                    <campo name="id_solicitud_ciudadana" text="ID solicitud ciudadana" filtroCampo="id_solicitud_ciudadana" filtroOperador="=" filtroValor="$inParam.id_solicitud_ciudadana$" width="300"/>
+                    <campo name="id_folio" text="Folio" width="300"/>
+                    <campo name="fecha_registro" text="Fecha de registro" width="300"/>
+                    <campo name="descripcion" text="Descripción" width="500"/>
+                    <campo name="adjuntar_evidencia" text="Archivo(Imágen evidencia)" type="file" width="300"/>
+                </tabla>
+            </componente>
+
+            <!--Tabla Solución de solicitud ciudadana-->
+            <componente tipo="tabla" nombre="Solución de solicitud ciudadana" id="CSSC" colapsado="si" mostrarAgregar="false" mostrarEliminar="false">
+                <tabla schema="operation" nombre="solucion_solicitud_ciudadana">
+                    <campo name="id_atencion_solicitud" text="ID Atención solicitud" filtroCampo="id_atencion_solicitud" filtroOperador="=" filtroValor="$inParam.id_atencion_solicitud$" width="100" visible="false" habilitado="false"/>
+                    <campo name="id_solucion_solicitud" text="ID solución solicitud"  width="300" visible="false" columna-visible="false" habilitado="false"/>
+                    <campo name="id_tipo_respuesta" text="Tipo respuesta" columnas="4" margen-izquierdo="1" width="100" habilitado="false"/>
+                    <campo name="id_estatus_solucion" text="*Estatus solución" validacion="%id_estatus_solucion%==null" validacionMensaje="Seleccione un estatus de solución" columnas="4" margen-derecho="1" width="300" />
+                    <campo name="descripcion" text="Descripción" visible="false" columnas="8" margen-izquierdo="1" margen-derecho="1" width="400" habilitado="false"/>
+                    <campo name="evidencia" text="Evidencia(PDF de donde se tomó la información)" type="file" columnas="2" margen-izquierdo="4" margen-derecho="4" width="300" habilitado="false"/>
+
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-derecho="4" margen-izquierdo="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+
+            <!--Formulario Autorización de la solicitud-->
+            <componente tipo="formulario" nombre="Autorización de la solución" id="CAS">
+                <tabla schema="operation" nombre="autoriza_solucion">
+                    <campo name="id_autoriza_solucion" text="ID autoriza solución" autogenerado="true" generacion="@prox()+1" visible="false"/>
+                    <campo name="autorizar_solucion" text="¿Desea autorizar la solución?" columnas="4" margen-izquierdo="3" margen-derecho="3" validacion="%autorizar_solucion%==null" validacionMensaje="Debe seleccionar una opción para continuar">
+                        <opciones>
+                            <opcion texto="Sí" valor="si"/>
+                            <opcion texto="No" valor="no"/>
+                        </opciones>
+                    </campo>
+                    <campo name="observaciones_rechazo" text="Observaciones de rechazo" interaccion-visible="%autorizar_solucion%=='no'" validacion="%autorizar_solucion%=='no' AND %observaciones_rechazo%==null"  columnas="6" margen-izquierdo="2" margen-derecho="2"/>
+                    <campo name="id_atencion_solicitud" text="ID atención solicitud" calc="$inParam.id_atencion_solicitud$" visible="false"/>
+                    <campo name="id_solicitud_ciudadana" text="ID solicitud ciudadana" calc="$inParam.id_solicitud_ciudadana$" visible="false" columna-visible="false"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-derecho="4" margen-izquierdo="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Registra firma electrónica" id="NRFE" mostrarNivelAnterior="false" mostrarProximoNivel="true" ejecutar="%NAS.CAS.autorizar_solucion%=='si'">
+           <componente tipo="validar-firma-electronica" nombre="Firma electrónica del documento" id="CFED">
+               <gobmx>
+                   <etiquetas>
+                       <etiqueta name="titulo" valor="Validar Fiel"/>
+                       <etiqueta name="boton" valor="Validar"/>
+                       <etiqueta name="boton-siguiente" valor="Firmar documentos"/>
+                   </etiquetas>
+               </gobmx>
+           </componente>
+        </nivel>
+        <nivel nombre="negociarInstancia" id="nI" interactivo="false" ejecutar="%NAS.CAS.autorizar_solucion%=='no'">
+            <componente tipo="solicitud" nombre="negociarInstancia" id="nI">
+                <parametros url="$config.request$" metodo="POST" accion="negociarInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="$protocolarios.process$"/>
+                    <parametro name="version" calc="$protocolarios.version$"/>
+                    <parametro name="instance" calc="$protocolarios.instance$"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                    <parametro name="reiniciarInstancia" calc="'true'"/>
+                </parametros>
+            </componente>
+        </nivel>
+        <nivel nombre="agregarMensaje" id="NAM" interactivo="false" ejecutar="%NAS.CAS.autorizar_solucion%=='no'">
+            <componente tipo="solicitud" nombre="agregarMensaje" id="CAM">
+                <parametros url="$config.request$" metodo="POST" accion="agregarMensaje" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="$protocolarios.process$"/>
+                    <parametro name="version" calc="$protocolarios.version$"/>
+                    <parametro name="instance" calc="$protocolarios.instance$"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                    <parametro name="message" calc="%NAS.CAS.observaciones_rechazo%"/>
+                    <parametro name="node" calc="'511ae4aa-127c-410f-bd86-458598264990'"/>
+                    <parametro name="RoleId" calc="'d30a08fc-c23c-4a0e-b673-1c531df4efea'"/>
+                    <parametro name="type" calc="'1'"/>
+                </parametros>
+            </componente>
+        </nivel>
+        <nivel nombre="crearNuevaInstancia" id="cI" interactivo="false" ejecutar="%NAS.CAS.autorizar_solucion%=='si'">
+            <componente tipo="solicitud" nombre="crearNuevaInstancia" id="cI">
+                <parametros url="$config.request$" metodo="POST" accion="crearNuevaInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="'b869df3b-8548-41f2-abbd-4d5006309eee'"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                    <parametro name="out_id_solicitud_ciudadana" calc="$inParam.id_solicitud_ciudadana$" text="ID solicitud ciudadana" mostrarEsc="true"/>
+                    <parametro name="out_id_atencion_solicitud" calc="$inParam.id_atencion_solicitud$" text="ID atención solicitud" mostrarEsc="true"/>
+                </parametros>
+            </componente>
+        </nivel>
+        <nivel nombre="terminarInstancia" id="tIn" interactivo="false" ejecutar="%NAS.CAS.autorizar_solucion%=='si'">
+            <componente tipo="solicitud" nombre="terminarInstancia" id="tIn">
+                <parametros url="$config.request$" metodo="POST" accion="terminarInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="$protocolarios.process$"/>
+                    <parametro name="version" calc="$protocolarios.version$"/>
+                    <parametro name="instance" calc="$protocolarios.instance$"/>
+                </parametros>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

@@ -1,0 +1,13 @@
+<tarea nombre="Expediente de la solicitud" requisitosInstalacion="no" autor="Fabricio Alejandro Sánchez García">
+    <pagina nombre="Expediente de la solicitud" id="1">
+        <nivel nombre="Nivel expediente de la solicitud" id="NES">
+            <componente tipo="VISOR" nombre="Expediente de la solicitud" id="CES" urlServidor="$config.urlServidor$">
+                <rutas grupo="@concatenar($inParam.id_solicitud_ciudadana$,'-',@reemplazarTexto('Solicitud ciudadana','*','/'))" >
+                    <ruta>
+                        Expediente de la solicitud
+                    </ruta>
+                </rutas>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

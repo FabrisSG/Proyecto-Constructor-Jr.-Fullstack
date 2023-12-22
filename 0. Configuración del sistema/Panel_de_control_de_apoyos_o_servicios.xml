@@ -1,0 +1,44 @@
+<tarea nombre="Panel de control de apoyos o servicios" requisitosInstalacion="no" autor="Fabricio Alejandro Sánchez García">
+    <pagina nombre="Panel de control de apoyos o servicios" id="1">
+        <nivel nombre="Panel de control de apoyos o servicios" id="NPC" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="panel-de-control" nombre="Panel de control de apoyos o servicios" id="CPC">
+                <grafica columnas="3" margen-izquierdo="1" titulo="Tipo de solicitudes ciudadanas" icono="documento">
+                    <pastel>
+                        <tabla schema="operation" nombre="solicitudes_ciudadanas">
+                            <campo name="id_solicitud_ciudadana"/>
+                            <campo name="id_tipo_solicitud" campoGrupo="true" filtroCampo="id_tipo_solicitud" filtroOperador="!=" filtroValor="null"/>
+                        </tabla>
+                        <tablaForanea schema="catalog" nombre="tipo_solicitud_ciudadana">
+                            <campo name="tipo_solicitud" campoDescripcion="true"/>
+                            <campo name="color" campoColor="true"/>
+                        </tablaForanea>
+                    </pastel>
+                </grafica>
+                <grafica columnas="3" margen-izquierdo="1" titulo="Categorías de solicitudes ciudadanas" icono="documento">
+                    <pastel>
+                        <tabla schema="operation" nombre="solicitudes_ciudadanas">
+                            <campo name="id_solicitud_ciudadana"/>
+                            <campo name="id_categoria_solicitud" campoGrupo="true" filtroCampo="id_categoria_solicitud" filtroOperador="!=" filtroValor="null"/>
+                        </tabla>
+                        <tablaForanea schema="catalog" nombre="categoria_solicitud_ciudadana">
+                            <campo name="categoria_solicitud" campoDescripcion="true"/>
+                            <campo name="color" campoColor="true"/>
+                        </tablaForanea>
+                    </pastel>
+                </grafica>
+                <grafica columnas="3" margen-izquierdo="1" titulo="Estatus de solicitudes ciudadanas" icono="documento">
+                    <pastel>
+                        <tabla schema="operation" nombre="solicitudes_ciudadanas">
+                            <campo name="id_solicitud_ciudadana"/>
+                            <campo name="id_estatus_solicitud" campoGrupo="true" filtroCampo="id_estatus_solicitud" filtroOperador="!=" filtroValor="null"/>
+                        </tabla>
+                        <tablaForanea schema="catalog" nombre="estatus_solicitud">
+                            <campo name="estatus_solicitud" campoDescripcion="true"/>
+                            <campo name="color" campoColor="true"/>
+                        </tablaForanea>
+                    </pastel>
+                </grafica>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

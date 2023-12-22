@@ -1,0 +1,51 @@
+<tarea nombre="Alta de usuarios" requisitosInstalacion="no" autor="Fabricio Alejandro Sánchez García">
+    <pagina nombre="Alta de usuarios" id="1">
+        <nivel nombre="Alta de usuarios" id="NAU" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="formulario" nombre="Alta de usuario" id="CAU" accionDefault="seleccionar">
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" text="ID dummy" visible="false" calc="1" columnas="2" margen-izquierdo="3"/>
+                    <campo name="l_id_usuario" text="*Identificador usuario" local="true" type="string" validacion="%l_id_usuario%==null" validacionMensaje="Registre identificador del usuario" columnas="3" margen-izquierdo="2"/>
+                    <campo name="l_nombre" text="*Nombre(s)" local="true" type="string" validacion="%l_nombre%==null" validacionMensaje="Registre nombre(s)" columnas="3" margen-derecho="2"/>
+                    <campo name="l_app" text="*Apellido paterno" local="true" type="string" validacion="%l_app%==null" validacionMensaje="Registre apellido paterno" columnas="3" margen-izquierdo="2"/>
+                    <campo name="l_apm" text="*Apellido materno" local="true" type="string" validacion="%l_apm%==null" validacionMensaje="Registre apellido materno" columnas="3" margen-derecho="2"/>
+                    <campo name="l_correo" text="*Correo electrónico" local="true" type="string" validacion="%l_correo%==null" validacionMensaje="Registre correo electrónico" columnas="3" margen-izquierdo="2"/>
+                    <campo name="l_contrasena" text="*Contraseña" local="true" type="string" validacion="%l_contrasena%==null" validacionMensaje="Registre contraseña" columnas="3" margen-derecho="2"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-izquierdo="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Agrega usuario a la plataforma" id="NAUP" interactivo="false">
+            <componente tipo="solicitud" nombre="Agrega usuario a la plataforma" id="CAUP">
+                <parametros url="$config.request$" metodo="POST" accion="addUser" tipo="json">
+                    <parametro name="idUser" calc="%NAU.CAU.l_id_usuario%"/>
+                    <parametro name="nombre" calc="@concatenar(%NAU.CAU.l_nombre%,' ',%NAU.CAU.l_app%,' ',%NAU.CAU.l_apm%)"/>
+                    <parametro name="correo" calc="%NAU.CAU.l_correo%"/>
+                    <parametro name="contrasena" calc="%NAU.CAU.l_contrasena%"/>
+                    <parametro name="tipo" calc="'oper'"/>
+                    <parametro name="roles" calc="'6'"/>
+                </parametros>
+            </componente>
+        </nivel>
+        <nivel nombre="Datos del usuario" id="NDU" mostrarNivelAnterior="false" mostrarProximoNivel="true">
+            <componente tipo="formulario" nombre="Datos usuario" id="CDU" accionDefault="seleccionar">
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" text="ID dummy" calc="1" visible="false" columnas="2" margen-izquierdo="3"/>
+                    <campo name="etiqueta1" text="El usuario se ha creado exitosamente, el usuario y contraseña son los siguientes:" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                    <campo name="l_id_usuario" text="Usuario" local="true" type="string" calc="%NAU.CAU.l_id_usuario%" habilitado="false" columnas="3" margen-izquierdo="2"/>
+                    <campo name="i_contrasena" text="Contraseña" local="true" type="string" calc="%NAU.CAU.l_contrasena%" habilitado="false" columnas="3" margen-derecho="2"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-izquierdo="4" visible="false"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

@@ -1,0 +1,123 @@
+<tarea nombre="Tarea de valida solicitud" autor="Fabricio Alejandro Sánchez García">
+    <pagina nombre="Pagina de valida solicitud" id="1">
+        <nivel nombre="Nivel de valida solicitud" id="NAS" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="formulario" nombre="Solicitudes ciudadanas" id="CSC" colapsado="si">
+                <tabla schema="operation" nombre="solicitudes_ciudadanas">
+                    <campo name="id_solicitud_ciudadana" text="Folio" calc="$inParam.id_solicitud_ciudadana$" columnas="1" habilitado="false"/>
+                    <campo name="fecha_registro" text="Fecha y hora de registro" calc="@fechaSistema(&quot;YYYY/MM/dd HH:mm:ss&quot;)" habilitado="false" columnas="2" margen-derecho="7"/>
+                    <campo name="etiqueta1" text="Datos del solicitante" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                    <campo name="nombre" text="*Nombre(s)" validacion="%nombre%==null" validacionMensaje="Registre el nombre del solicitante" columnas="4" habilitado="false"/>
+                    <campo name="apellido_paterno" text="*Apellido paterno" validacion="%apellido_paterno%==null" validacionMensaje="Registre el apellido paterno del solicitante" columnas="3" habilitado="false"/>
+                    <campo name="apellido_materno" text="*Apellido materno" validacion="%apellido_materno%==null" validacionMensaje="Registre el apellido materno del solicitante" columnas="3" habilitado="false"/>
+                    <campo name="id_sexo" text="*Género" validacion="%id_sexo%==null" validacionMensaje="Registre género" columnas="2" habilitado="false"/>
+                    <campo name="correo_electronico" text="*Dirección de correo electrónico" validacion="%correo_electronico%==null" validacionMensaje="Registre correo electrónico" columnas="3" habilitado="false"/>
+                    <campo name="l_confirmacion_correo" text="*Confirme correo electrónico" local="true" type="string" validacion="%correo_electronico%!=%l_confirmacion_correo% OR %l_confirmacion_correo%==null"  validacionMensaje="El correo electrónico es diferente o no lo ha registrado" columnas="3" margen-derecho="2" habilitado="false"/>
+                    <campo name="telefono_fijo" text="Teléfono fijo" columnas="2" habilitado="false"/>
+                    <campo name="telefono_movil" text="*Teléfono móvil" validacion="%telefono_movil%==null" validacionMensaje="Registre teléfono móvil" columnas="2" margen-derecho="6" habilitado="false"/>
+                    <campo name="etiqueta2" text="Domicilio" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                    <campo name="id_estado" text="*Estado" validacion="%id_estado%==null" validacionMensaje="Registre el estado" columnas="5" habilitado="false"/>
+                    <campo name="id_municipio" text="*Municipio" descripcionForanea="municipio" validacion="%id_municipio%==null" validacionMensaje="Registre municipio" columnas="5" habilitado="false"/>
+                    <campo name="codigo_postal" text="*Código Postal" validacion="%codigo_postal%==null" validacionMensaje="Registre código postal" columnas="1" habilitado="false"/>
+                    <campo name="colonia" text="*Colonia" validacion="%colonia%==null" validacionMensaje="Registre colonia" columnas="3" habilitado="false"/>
+                    <campo name="calle" text="*Calle" validacion="%calle%==null" validacionMensaje="Registre calle" columnas="4" habilitado="false"/>
+                    <campo name="no_ext" text="*No.Ext." validacion="%no_ext%==null" validacionMensaje="Registre No.Ext." columnas="1" habilitado="false"/>
+                    <campo name="no_int" text="No.Int." columnas="1" habilitado="false"/>
+                    <campo name="etiqueta3" text="Solicitud ciudadana" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                    <campo name="id_tipo_solicitud" text="*Tipo de solicitud" validacion="%id_tipo_solicitud%==null" validacionMensaje="Seleccione tipo de solicitud" columnas="3" habilitado="false"/>
+                    <campo name="id_categoria_solicitud" text="*Categoría de solicitud" validacion="%id_categoria_solicitud%==null" validacionMensaje="Selecciones categoria de solicitud" columnas="5" habilitado="false"/>
+                    <campo name="otro" text="*Otro" interaccion="%id_categoria_solicitud%==15" validacion="%id_categoria_solicitud%==15 AND %otro%==null" validacionMensaje="Registre otro" columnas="2" habilitado="false"/>
+                    <campo name="detalle_problema" text="*Detalle problema" validacion="%detalle_problema%==null" validacionMensaje="Detalle el problema" columnas="10" habilitado="false"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" visible="false" columnas="2" margen-izquierdo="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+             <componente tipo="tabla" nombre="Información gráfica complementaria" id="CIGC" filtro="true" mostrarAgregar="false" mostrarEliminar="false" mostrarEditar="false" colapsado="si">
+                <tabla schema="operation" nombre="informacion_grafica_complementaria">
+                    <campo name="id_solicitud_ciudadana" text="ID solicitud ciudadana" calc="$inParam.id_solicitud_ciudadana$" visible="false" columna-visible="true" filtroCampo="id_solicitud_ciudadana" filtroOperador="=" filtroValor="$inParam.id_solicitud_ciudadana$"/>
+                    <campo name="id_folio" text="Folio" autogenerado="true" generacion="@prox()+1" width="250" columnas="2" margen-izquierdo="2" />
+                    <campo name="fecha_registro" text="Fecha de registro" calc="@fechaSistema(&quot;YYYY/MM/dd HH:mm:ss&quot;)" width="300" columnas="4"/>
+                    <campo name="descripcion" text="*Descripción" width="450" validacion="%descripcion%==null" validacionMensaje="Registre descripción" columnas="6" margen-izquierdo="2"/>
+                    <campo name="adjuntar_evidencia" text="*Archivo(Imágen de la evidencia del problema)" width="250" validacion="%adjuntar_evidencia%==null" validacionMensaje="Registre evidencia" columnas="4" margen-izquierdo="3" margen-derecho="3"/>
+                    <campo name="l_etiqueta" texto="Los campos con ( * ) son obligatorios" local="true" type="etiqueta" color="red" interlineado="12px" nombre="abrir_modal" tamaño="12px" alineacion="centro" columna-visible="false" columnas="10"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6"/>
+                </estilos>
+            </componente>
+            <componente tipo="formulario" nombre="Validación solicitud ciudadana" id="CASC">
+                <tabla schema="operation" nombre="autoriza_solicitud">
+                    <campo name="id_autoriza_solicitud" text="ID validación solicitud" autogenerado="true" generacion="@prox()+1" columnas="2" margen-izquierdo="3" visible="false"/>
+                    <campo name="fecha_autorizacion" text="Fecha autorización" calc="@fechaSistema(&quot;YYYY/MM/dd HH:mm:ss&quot;)" columnas="2" margen-derecho="3" visible="false"/>
+                    <campo name="id_solicitud_ciudadana" text="ID solicitud ciudadana" calc="$inParam.id_solicitud_ciudadana$" visible="false"/>
+
+                    <campo name="autorizar_solicitud" text="*¿Desea validar la solicitud?" validacion="%autorizar_solicitud%==null" validacionMensaje="Seleccione una opción" columnas="4" margen-izquierdo="3" margen-derecho="4">
+                        <opciones>
+                            <opcion texto="Sí" valor="si"/>
+                            <opcion texto="No" valor="no"/>
+                        </opciones>
+                    </campo>
+                    <campo name="observacion_rechazo" text="*Observaciones de rechazo" validacion="%autorizar_solicitud%=='no' AND %observacion_rechazo%==null" validacionMensaje="Registre observaciones de rechazo" interaccion-visible="%autorizar_solicitud%=='no'" columnas="6" margen-izquierdo="2" margen-derecho="2"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-izquierdo="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="negociarInstancia" id="nI" interactivo="false" ejecutar="%NAS.CASC.autorizar_solicitud%=='no'">
+            <componente tipo="solicitud" nombre="" id="nI">
+                <parametros url="$config.request$" metodo="POST" accion="negociarInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="$protocolarios.process$"/>
+                    <parametro name="version" calc="$protocolarios.version$"/>
+                    <parametro name="instance" calc="$protocolarios.instance$"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                    <parametro name="reiniciarInstancia" calc="'true'"/>
+                </parametros>
+            </componente>
+        </nivel>
+        <nivel nombre="SOLICITUD-Agregar mensaje por no autorizar" id="SAM" interactivo="false" ejecutar="%NAS.CASC.autorizar_solicitud%=='no'">
+            <componente tipo="solicitud" nombre="rechazarInstancia" id="SAM">
+                <parametros url="$config.request$" metodo="POST" accion="agregarMensaje" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="$protocolarios.process$"/>
+                    <parametro name="version" calc="$protocolarios.version$"/>
+                    <parametro name="instance" calc="$protocolarios.instance$"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                    <parametro name="message" calc="%NAS.CASC.observacion_rechazo%"/>
+                    <parametro name="node" calc="'77aad0a1-3cf7-474c-849e-9b00b36fdb63'"/>
+                    <parametro name="RoleId" calc="'e0db0694-0642-4e94-a198-fe70647b6a65'"/>
+                    <parametro name="type" calc="'1'"/>
+                </parametros>
+            </componente>
+        </nivel>
+        <nivel nombre="crearNuevaInstancia" id="cI" interactivo="false" ejecutar="%NAS.CASC.autorizar_solicitud%=='si'">
+            <componente tipo="solicitud" nombre="crearNuevaInstancia" id="cI">
+                <parametros url="$config.request$" metodo="POST" accion="crearNuevaInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="'da8ee944-055a-478c-bf23-c4e62646bfe9'"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                    <parametro name="out_id_solicitud_ciudadana" calc="$inParam.id_solicitud_ciudadana$" text="ID solicitud ciudadana" mostrarEsc="true"/>
+                    <!--<parametro name="out_" calc="%%" mostrarEsc="true"/>
+                    <parametro name="out_" calc="%%" mostrarEsc="true"/>-->
+                </parametros>
+            </componente>
+        </nivel>
+        <nivel nombre="terminarInstancia" id="tIn" interactivo="false" ejecutar="%NAS.CASC.autorizar_solicitud%=='si'">
+            <componente tipo="solicitud" nombre="terminarInstancia" id="tIn">
+                <parametros url="$config.request$" metodo="POST" accion="terminarInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="$protocolarios.process$"/>
+                    <parametro name="version" calc="$protocolarios.version$"/>
+                    <parametro name="instance" calc="$protocolarios.instance$"/>
+                </parametros>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

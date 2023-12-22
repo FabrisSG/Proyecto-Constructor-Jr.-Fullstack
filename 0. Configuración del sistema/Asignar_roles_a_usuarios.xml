@@ -1,0 +1,45 @@
+<tarea nombre="Asignar roles a usuarios" requisitosInstalacion="no" autor="Fabricio Alejandro Sánchez García">
+    <pagina nombre="Asignar roles a usuarios" id="1">
+        <nivel nombre="Asignar roles a usuarios" id="NAR" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="formulario" nombre="Asignar roles a usuarios" id="CAR" accionDefault="editar">
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" text="ID dummy" visible="false" calc="1" columnas="2" margen-izquierdo="3"/>
+                    <campo name="l_id_usuario" text="*Identificador usuario" local="true" type="string" validacion="%l_id_usuario%==null" validacionMensaje="Registre identificador usuario" columnas="4" margen-izquierdo="3" margen-derecho="3"/>
+                    <campo name="l_id_proceso" text="*ID proceso" local="true" type="string" validacion="%l_id_proceso%==null" validacionMensaje="Registre ID proceso" columnas="4" margen-izquierdo="3" margen-derecho="3"/>
+                    <campo name="l_id_rol" text="*ID rol" local="true" type="string" validacion="%l_id_rol%==null" validacionMensaje="Registre ID rol" columnas="4" margen-izquierdo="3" margen-derecho="3"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-izquierdo="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Agrega rol al usuario en la plataforma" id="NARU" interactivo="false">
+            <componente tipo="solicitud" nombre="Agrega rol al usuario en la plataforma" id="CARU">
+                <parametros url="$config.request$" metodo="POST" accion="agregarRolAUsuario" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="%NAR.CAR.l_id_proceso%"/>
+                    <parametro name="version" calc="1"/>
+                    <parametro name="user" calc="%NAR.CAR.l_id_usuario%"/>
+                    <parametro name="RoleId" calc="%NAR.CAR.l_id_rol%"/>
+                </parametros>
+            </componente>
+        </nivel>
+        <nivel nombre="Notificación del rol" id="NNR" mostrarNivelAnterior="false" mostrarProximoNivel="true">
+            <componente tipo="formulario" nombre="Notificación del rol" id="CNR" accionDefault="editar">
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" text="ID dummy" calc="1" columnas="2" margen-izquierdo="3" visible="false"/>
+                    <campo name="etiqueta1" text="El rol se ha asignado correctamente al usuario" bold="normal" color="black" interlineado="26px" nombre="abrir_modal" tamaño="26px" local="true" type="etiqueta" columnas="10"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6" visible="false"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

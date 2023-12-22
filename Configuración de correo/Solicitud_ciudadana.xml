@@ -1,0 +1,150 @@
+<div class="es-wrapper-color">
+        <table width="100%" class="es-wrapper">
+            <tbody>
+                <tr>
+                    <td valign="top" class="esd-email-paddings">
+                        <table align="center" class="es-header esd-header-popover">
+                            <tbody>
+                                <tr>
+                                    <td align="center" class="esd-stripe">
+                                        <table align="center" width="600" class="es-header-body">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="background-color:034977;" bgcolor="034977" align="left" class="esd-structure es-p20">
+                                                        <table width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="center" valign="top" width="560" class="esd-container-frame">
+                                                                        <table width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="esd-block-text" align="center">
+                                                                                        <p style="font-size: 16px; color: #ffffff; font-family: roboto, sans-serif;"><strong>Solicitudes ciudadanas</strong></p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table align="center" class="es-content">
+                            <tbody>
+                                <tr>
+                                    <td align="center" class="esd-stripe">
+                                        <table align="center" bgcolor="#ffffff" width="600" class="es-content-body">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="esd-structure es-p40t es-p40b es-p30r es-p30l">
+                                                        <table width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="center" valign="top" width="540" class="esd-container-frame">
+                                                                        <table width="100%">
+                                                                            <tbody>
+                                                                                          <tr>
+                                                  <td align="rigth" class="esd-block-text">
+                                                                                        <h3 style="color: #333333; font-size: 14px; font-family: roboto, sans-serif;">Estimado $nombre_solicitante$ :</h3>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="left" class="esd-block-text es-p15t">
+                                                                                        <p style="color: #333333; font-size: 12px; line-height: 150%; font-family: roboto, sans-serif;">Por este medio se le informa que su solicitud ha sido generada con la siguiente información.</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="center" class="esd-block-text es-p15t">
+                                                                                        <p style="color: #333333; font-size: 12px; font-family: roboto, sans-serif;">Número de folio: <span style="font-size:14px;"><strong>$id_folio$</strong></span></p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="center" class="esd-block-text es-p15t">
+                                                                                        <p style="color: #333333; font-size: 12px; font-family: roboto, sans-serif;">Tipo de solicitud ciudadana: <span style="font-size:14px;"><strong>$tipo_solicitud_ciudadana$</strong></span></p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="center" class="esd-block-text es-p15t">
+                                                                                        <p style="color: #333333; font-size: 12px; font-family: roboto, sans-serif;">Categoría de la solicitud ciudadana: <span style="font-size:14px;"><strong>$categoria_solicitud_ciudadana$</strong></span></p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="center" class="esd-block-text es-p15t">
+                                                                                        <p style="color: #333333; font-size: 12px; font-family: roboto, sans-serif;">Detalle del problema: <span style="font-size:14px;"><strong>$detalle_problema$</strong></span></p>
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                                <tr>
+                                                                                    <td align="center" class="esd-block-text es-p15t">
+                                                                                        <p style="color: #333333; font-size: 12px; font-family: roboto, sans-serif;"><span style="font-size:14px;"><strong> </strong></span></p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="left" class="esd-block-text es-p25t">
+                                                                                        <p style="color: #333333; font-size: 12px; font-family: roboto, sans-serif;">Para ingresar a la plataforma dar click en el siguiente enlace:</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="left" class="esd-block-text es-p15t">
+                                                                                        <p style="font-size: 13px; color: #0b5394; font-family: roboto, sans-serif;"><u>http://hotware-smart-cloud-client.s3-website-us-west-2.amazonaws.com</u></p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table align="center" class="es-footer esd-footer-popover">
+                            <tbody>
+                                <tr>
+                                    <td align="center" class="esd-stripe">
+                                        <table align="center" width="600" class="es-footer-body">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="background-color: #333333;" bgcolor="#333333" align="left" class="esd-structure es-p20t es-p20b es-p20r es-p20l">
+                                                        <table width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="center" valign="top" width="560" class="esd-container-frame">
+                                                                        <table width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="center" class="esd-block-text es-p10t es-p15r es-p15l">
+                                                                                        <p style="font-size: 10px; color: #ffffff; font-family: roboto, sans-serif;">**Favor no responder este mensaje ya que ha sido emitido automáticamente por el sistema de solicitudes ciudadanas**</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

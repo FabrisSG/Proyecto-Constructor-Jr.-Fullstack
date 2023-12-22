@@ -1,0 +1,111 @@
+<tarea nombre="Atención y solución de solicitud" requisitosInstalacion="no" autor="Fabricio Alejandro Sánchez García">
+   <pagina nombre="Atención y solución de solicitud" id="1">
+       <nivel nombre="Atención y solución de solicitud" id="NASS" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+           <componente tipo="formulario" nombre="Solicitudes ciudadanas" id="CSC" colpasado="si">
+               <tabla schema="operation" nombre="solicitudes_ciudadanas">
+                   <campo name="id_solicitud_ciudadana" text="Folio" calc="$inParam.id_solicitud_ciudadana$" habilitado="false" columnas="1"/>
+                   <campo name="fecha_registro" text="Fecha y hora de registro" margen-derecho="7" columnas="2"/>
+                   <campo name="etiqueta1" text="Datos del solicitante" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10" />
+                   <campo name="nombre" text="Nombre(s)" columnas="4" habilitado="false" />
+                   <campo name="apellido_paterno" text="Apellido paterno" columnas="3" habilitado="false" />
+                   <campo name="apellido_materno" text="Apellido materno" columnas="3" habilitado="false" />
+                   <campo name="id_sexo" text="Género" columnas="2" habilitado="false" />
+                   <campo name="correo_electronico" text="Dirección de correo electrónico" columnas="3" habilitado="false" />
+                   <campo name="l_confirmacion_correo" text="Confirme correo electrónico" local="True" type="string" margen-derecho="2" columnas="3" habilitado="false"/>
+                   <campo name="telefono_fijo" text="Teléfono fijo" columnas="2" habilitado="false" />
+                   <campo name="telefono_movil" text="Teléfono móvil" margen-derecho="6" columnas="2" habilitado="false" />
+                   <campo name="etiqueta2" text="Domicilio" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                   <campo name="id_estado" text="Estado" columnas="5" habilitado="false" />
+                   <campo name="id_municipio" text="Municipio" columnas="5" habilitado="false" />
+                   <campo name="codigo_postal" text="Código Postal" columnas="1" habilitado="false" />
+                   <campo name="colonia" text="Colonia" columnas="3" habilitado="false" />
+                   <campo name="calle" text="Calle" columnas="4" habilitado="false" />
+                   <campo name="no_ext" text="No.Ext" columnas="1" habilitado="false" />
+                   <campom name="no_int" text="No.Int" columnas="1" habilitado="false" />
+                   <campo name="etiqueta3" text="Solicitud ciudadana" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                   <campo name="id_tipo_solicitud" text="Tipo de solicitud" columnas="3" habilitado="false" />
+                   <campo name="id_categoria_solicitud" text="Categoría de la solicitud" columnas="5" habilitado="false" />
+                   <campo name="otro" text="Otro" columnas="2" habilitado="false" />
+                   <campo name="detalle_problema" text="Detalle problema" columnas="10" habilitado="false" />
+               </tabla>
+           </componente>
+           <componente tipo="tabla" nombre="Información gráfica complementaria" id="CIGC" mostrarAgregar="false" mostrarEditar="false" mostrarEliminar="false" colpasado="si">
+               <tabla schema="operation" nombre="informacion_grafica_complementaria">
+                   <campo name="id_solicitud_ciudadana" text="ID Solicitud ciudadana" filtroCampo="id_solicitud_ciudadana" filtroOperador="=" filtroValor="$inParam.id_solicitud_ciudadana$" columnas="2" margen-izquierdo="2"/>
+                   <campo name="id_folio" text="Folio" margen_izquierdo="3" columnas="3"/>
+                   <campo name="fecha_registro" text="Fecha de registro" margen-derecho="3" columnas="3"/>
+                   <campo name="descripcion" text="Descripción" />
+                   <campo name="adjuntar_evidencia" text="Archivo(Imágen de la evidencia el problema" type="file"/>
+               </tabla>
+           </componente>
+           <componente tipo="formulario" nombre="Atención de solicitud ciudadana" id="CASC">
+               <tabla schema="operation" nombre="atencion_solicitud_ciudadana">
+                   <campo name="id_atencion_solicitud" text="Folio" autogenerado="true" generacion="@prox()+1" columnas="1"/>
+                   <campo name="fecha_registro" text="Fecha de registro" calc="@fechaSistema(&quot;YYYY/MM/dd HH:mm:ss&quot;)" columnas="2" margen-derecho="7"/>
+                   <campo name="etiqueta1" text="Datos del solucionador" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                   <campo name="nombre" text="*Nombre(s)" validacion="%nombre%==null" validacionMensaje="Registre nombre(s)" columnas="4"/>
+                   <campo name="apellido_paterno" text="*Apellido paterno" validacion="%apellido_paterno%==null" validacionMensaje="Registre apellido paterno" columnas="3"/>
+                   <campo name="apellido_materno" text="*Apellido materno" validacion="%apellido_materno%==null" validacionMensaje="Registre apellido materno" columnas="3"/>
+                   <campo name="correo_electronico" text="*Correo electrónico" validacion="%correo_electronico%==null" validacionMensaje="Registre correo electrónico" margen-izquierdo="2" columnas="3"/>
+                   <campo name="telefono" text="*Teléfono" validacion="%telefono%==null" validacionMensaje="Regístre teléfono" margen-derecho="3" columnas="2"/>
+                   <campo name="etiqueta2" text="Fecha estimada" bold="normal" color="black" interlineado="12px" nombre="abrir_modal" tamaño="16px" local="true" type="etiqueta" columnas="10"/>
+                   <campo name="dias_atencion" text="*Días de atención" validacion="%dias_atencion%==null" validacionMensaje="Registre días de atención" margen-izquierdo="2" columnas="3"/>
+                   <campo name="fecha_compromiso" text="*Fecha compromiso" margen-derecho="2" columnas="3"/>
+                   <campo name="id_tipo_servicio" text="*Tipo de servicio" validacion="%id_tipo_servicio%==null" validacionMensaje="Selección tipo de servicio" margen-izquierdo="2" margen-derecho="2" columnas="6"/>
+                   <campo name="id_solicitud_ciudadana" text="ID solicitud ciudadana" calc="$inParam.id_solicitud_ciudadana$" visible="false"/>
+               </tabla>
+           </componente>
+       </nivel>
+       <nivel nombre="Nivel Solución de solicitud ciudadana" id="NSSC">
+           <componente tipo="tabla" nombre="Solución de solicitud ciudadana" id="CSSC">
+               <tabla schema="operation" nombre="solucion_solicitud_ciudadana" >
+                   <campo name="id_atencion_solicitud" text="ID atención solicitud" calc="%NASS.CASC.id_atencion_solicitud%" visible="false" filtroCampo="id_atencion_solicitud" filtroOperador="=" filtroValor="%NASS.CASC.id_atencion_solicitud%"/>
+                   <campo name="id_solucion_solicitud" text="ID Solución solicitud" autogenerado="true" generacion="@prox()+1" visible="false"/>
+                   <campo name="id_tipo_respuesta" text="*Tipo de respuesta" validacion="%id_tipo_respuesta%==null" validacionMensaje="Seleccione tipo de respuesta" margen-izquierdo="1" columnas="4"/>
+                   <campo name="id_estatus_solucion" text="*Estatus solución" llavesFijas="id_estatus_solucion=1" validacion="%id_estatus_solucion%==null" validacionMensaje="Seleccione estatus solución" margen-derecho="1" columnas="4"/>
+                   <campo name="descripcion" text="*Descripción" validacion="%descripcion%==null" validacionMensaje="Registre descripción" margen-izquierdo="1" margen-derecho="1" columnas="8"/>
+                   <campo name="evidencia" text="*Evidencia (PDF de donde se tomó la información)" type="file" fileType="normal" update="false" url="$config.repository_upload_file$" grupo="@concatenar($inParam.id_solicitud_ciudadana$,'-',@reemplazarTexto('Solicitud ciudadana','*','/'))" expediente="@concatenar('Expediente de la solicitud/',@reemplazarTexto('Archivos solución','*','/'))" nombreDocumento="%evidencia%" validacion="%evidencia%==null" validacionMensaje="Registre evidencia" margen-derecho="4" margen-izquierdo="4" columnas="2"/>
+                   <campo name="id_solicitud_ciudadana" text="ID solicitud ciudadana" calc="$inParam.id_solicitud_ciudadana$" visible="false" columna-visible="false"/>
+               </tabla>
+           </componente>
+       </nivel>
+       <nivel nombre="Cursor para obtener la información de la solicitud ciudadana" id="NISC" interactivo="false">
+           <componente tipo="cursor" nombre="Cursor para obtener la información de la solicitud ciudadana" id="CISC">
+               <tabla schema="operation" nombre="solicitudes_ciudadanas">
+                   <campo name="id_solicitud_ciudadana" filtroCampo="id_solicitud_ciudadana" filtroOperador="=" filtroValor="$inParam.id_solicitud_ciudadana$"/>
+                   <campo name="correo_electronico"/>
+                  <campo name="nombre"/>
+                   <campo name="apellido_paterno"/>
+                   <campo name="apellido_materno"/>
+               </tabla>
+           </componente>
+       </nivel>
+       <nivel nombre="Correo electrónico de la solución" id="NCES" interactivo="false">
+           <componente tipo="email" nombre="Correo electrónico de la solución" id="CCES" nombreUsuario="'itcfabricadesoftware@gmail.com'" passUsuario="'nqlgbywimclaimam'" asunto="Solución solicitud ciudadana" destinatarios="%NISC.CISC.correo_electronico%">
+               <body tipo="HTML" plantilla="f9324a80-14fe-4d52-897e-f53ce99f6da9" >
+                   <parametro nombre="nombre_solicitante" calc="@concatenar(%NISC.CISC.nombre%,' ',%NISC.CISC.apellido_paterno%,' ',%NISC.CISC.apellido_materno%)"/>
+                   <parametro nombre="id_folio" calc="%NASS.CASC.id_atencion_solicitud%"/>
+                   <parametro nombre="nombre_solucionador" calc="@concatenar(%NASS.CASC.nombre%,' ',%NASS.CASC.apellido_paterno%,' ',%NASS.CASC.apellido_materno%)"/>
+                   <parametro nombre="correo_electronico_solucionador" calc="%NASS.CASC.correo_electronico%"/>
+                   <parametro nombre="fecha_compromiso" calc="%NASS.CASC.fecha_compromiso%"/>
+                   <parametro nombre="tipo_servicio" calc="@consultaDirec('SELECT tipo_servicio AS resultado FROM catalog.tipo_servicio WHERE id_tipo_servicio='+'\\''+%NASS.CASC.id_tipo_servicio%+'\\'','resultado','string',$protocolarios.enterprise$)"/>
+                   <parametro nombre="tipo_respuesta" calc="@consultaDirec('SELECT tipo_respuesta AS resultado FROM catalog.tipo_respuesta WHERE id_tipo_respuesta='+'\\''+%NSSC.CSSC.id_tipo_respuesta%+'\\'','resultado','string',$protocolarios.enterprise$)"/>
+                   <parametro nombre="descripcion_solucion" calc="%NSSC.CSSC.descripcion%"/>
+
+               </body>
+           </componente>
+       </nivel>
+       <nivel nombre="actualizarInstancia" id="NAI" interactivo="false">
+           <componente tipo="solicitud" nombre="actualizarInstancia" id="CAI">
+               <parametros url="$config.request$" metodo="POST" accion="actualizarInstancia" tipo="json">
+                   <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                   <parametro name="process" calc="'da8ee944-055a-478c-bf23-c4e62646bfe9'"/>
+                   <parametro name="version" calc="$protocolarios.version$"/>
+                   <parametro name="instance" calc="$protocolarios.instance$"/>
+                   <parametro name="out_id_solicitud_ciudadana" calc="$inParam.id_solicitud_ciudadana$" text="ID solicitud ciudadana" mostrarEsc="true"/>
+                   <parametro name="out_id_atencion_solicitud" calc="%NASS.CASC.id_atencion_solicitud%" text="ID atención solicitud" mostrarEsc="true"/>
+               </parametros>
+           </componente>
+       </nivel>
+   </pagina>
+</tarea>

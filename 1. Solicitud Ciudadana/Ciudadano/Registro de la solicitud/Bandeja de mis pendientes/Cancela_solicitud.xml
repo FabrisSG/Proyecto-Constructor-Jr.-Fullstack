@@ -1,0 +1,53 @@
+<tarea nombre="Cancela solicitud" requisitosInstalacion="no" autor="Fabricio Alejandro Sánchez García">
+    <pagina nombre="Cancela solicitud" id="1">
+        <nivel nombre="Cancela solicitud" id="NCS" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="formulario" nombre="Cancelación de la solicitud" id="CCS" accionDefault="editar">
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" text="ID dummy" calc="1" visible="false" columnas="2" margen-izquierdo="3"/>
+                    <campo name="l_cancelar_solicitud" text="¿Estás seguro de cancelar tu solicitud?" local="true" type="boolean" columnas="4" margen-izquierdo="4" margen-derecho="2"/>
+                </tabla>
+                <confirmaciones>
+                    <confirmacion confirmacionInteraccion="%l_cancelar_solicitud%==true" confirmacionTitulo="Cancelación de solicitud" confirmacionMensaje="¿Estás seguro de cancelar tu solicitud?" tipo="avanzar"/>
+                </confirmaciones>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        <nivel nombre="Cursor para cambiar estatus de la solicitud" id="NCES" interactivo="false" ejecutar="%NCS.CCS.l_cancelar_solicitud%==true%">
+            <componente tipo="cursor" nombre="Cursor para cambiar estatus de la solicitud" id="CCES">
+                <tabla schema="operation" nombre="solicitudes_ciudadanas">
+                    <campo name="id_solicitud_ciudadana" filtroCampo="id_solicitud_ciudadana" filtroOperador="=" filtroValor="$inParam.id_solicitud_ciudadana$"/>
+                    <campo name="id_estatus_solicitud" calc="2"/>
+                </tabla>
+            </componente>
+        </nivel>
+         <nivel nombre="terminarInstancia" id="tIn" interactivo="false" ejecutar="%NCS.CCS.l_cancelar_solicitud%==true">
+            <componente tipo="solicitud" nombre="" id="tIn">
+                <parametros url="$config.request$" metodo="POST" accion="terminarInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="$protocolarios.process$"/>
+                    <parametro name="version" calc="$protocolarios.version$"/>
+                    <parametro name="instance" calc="$protocolarios.instance$"/>
+                </parametros>
+            </componente>
+        </nivel>
+        <nivel nombre="Aviso de solicitud cancelada" id="NASC" mostrarProximoNivel="true" mostrarNivelAnterior="false" ejecutar="%NCS.CCS.l_cancelar_solicitud%==true">
+            <componente tipo="formulario" nombre="Aviso de solicitud cancelada" id="CASC" accionDefault="editar">
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" text="ID dummy" visible="false" calc="1" columnas="2" margen-izquierdo="3"/>
+                    <campo name="l_etiqueta" text="Su solicitud ha sido cancelada exitosamente" bold="normal" color="black" interlineado="50px" nombre="abrir_modal" tamaño="26px" local="true" type="etiqueta" columnas="10"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2" margen-izquierdo="4" margen-derecho="4" visible="false"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>
